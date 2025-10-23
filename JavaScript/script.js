@@ -29,15 +29,16 @@
 
 // let name;
 // let age2;
-// let _temp;
+// let _temp; 
 // let $price;
 // let NAME;
 
-// let 1name;
+// let 1name; //can't start with a numeric/digit
 
 // let age = 10;    
-// let Age = 20;
+// let Age = 20; //Case Sensitive
 // console.log(age)
 // console.log(Age)
 
-// let class = 20;
+
+// let class = 20; //can't be a keyword
