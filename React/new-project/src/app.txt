@@ -1,0 +1,222 @@
+//Passing down props
+import Contact from "./components/Contact"
+function App() {
+  let fName = "Birendra"
+  return (
+    <>
+       <h1>Welcome to React</h1>
+       <h2>Hello and welcome</h2>
+       
+       <Contact name = {fName} age = {23} country = "Nepal"   />  
+    </>
+  
+  )
+}
+
+
+export default App
+//Passing down arrays
+import React from 'react'
+import Greet from './components/Greet'
+
+function App() {
+  let names = ['Pooja', 'Birendra', 'Abhishek', 'Sushma', 'Bhuvana']
+  return (
+    <>
+      <Greet fNames = {names}/>
+    </>
+  )
+}
+
+export default App
+
+//Passing an Object
+import React from 'react'
+import Developer from './components/Developer'
+
+function App() {
+  let developer = {
+    name: "Pooja",
+    id: 1,
+    country: "Nepal"
+  }
+  let developer2 = {
+    name: "Sushma",
+    id: 2,
+    country: "Nepal"
+  }
+   let developer3 = {
+    name: "Birendra",
+    id: 3,
+    country: "Nepal"
+  }
+  return (
+    <>
+      
+      <Developer details = {developer}/>
+      <Developer details = {developer2}/>
+      <Developer details = {developer3}/>
+    </>
+  )
+}
+
+export default App
+
+//Children propsimport React from 'react'
+import User from './components/User'
+import MyInfo from './components/MyInfo'
+
+function App() {
+  return (
+    <div>
+    <MyInfo color= "red">
+      <h2>Developer one: </h2>
+      <h5>Name: "Pooja"</h5>
+      <h5>id: 1</h5>
+    </MyInfo>
+    <MyInfo color = "orange">
+      <h2>Developer two: </h2>
+      <h5>Name: "Sushma"</h5>
+      <h5>id: 2</h5>
+    </MyInfo>
+    <MyInfo color = "blue">
+      <h2>Developer three: </h2>
+      <h5>Name: "Birendra"</h5>
+      <h5>id: 3</h5>
+    </MyInfo>
+    </div>
+  )
+}
+
+export default App
+
+//Click Event and Function Call
+import React from 'react'
+
+function App() {
+function clickEvent(){
+  alert("I was clicked")
+}
+function greet(name){
+    alert("Welcome " + name )
+}
+
+function handleClick(event){
+    console.log("Event: ", event)
+    console.log(event.target)
+    console.log(event.target.innerText)
+}
+
+  return (
+    <div>
+      <button onClick={clickEvent}>Click me!</button>    
+      <button onClick={()=>greet("Sushma")}>Greet</button>
+      <button onClick={handleClick}>Event Check</button>
+      <button onClick={()=>alert("How are you doing?")}>Inline Handling</button>
+    </div>
+  )
+}
+
+export default App
+
+//State
+import React from 'react'
+import { useState } from 'react'
+function App() {
+  // let phone = "Samsung"
+  // function changePhone(){
+  //   phone = "Apple"
+  //   console.log(phone)
+  // }
+let [phone, setPhone] = useState("Samsung")
+function changePhone(){
+    setPhone("Apple")
+}
+  return (
+    <>
+      {/* <button onClick={changePhone} >Change Phone</button>
+      <h3>{phone}</h3> */}
+      <h3>{phone}</h3>
+      <button onClick={changePhone}>Change Phone</button>
+    </>
+  )
+}
+
+export default App
+
+//Conditional Rendering
+import React from 'react'
+import { useState } from 'react'
+import Counter from './components/Counter'
+import Learner from './components/Learner'
+
+function App() {
+  
+      let [show, setShow] = useState(false)
+  return (
+    <>
+        <button onClick={()=>setShow(!show)}>Toggle</button>
+
+        {/* {show?<h3>Welcome</h3>:null} */}
+        {show? <Learner/>:null}
+    </>
+  )
+}
+
+export default App
+//Multiple Conditional Rendering
+import React, { useState } from 'react'
+
+function App() {
+  let[count, setCount] = useState(0)
+  return (
+    <div>
+      { <h1>Count: {count}</h1>}
+      <button onClick={()=>setCount(count+1)}>Count</button>
+
+    {count==0? <h1>Display Section 0</h1>:
+    count==1? <h1>Display Section 1</h1>:
+    count==2? <h1>Display Section 2</h1>:
+    count==3? <h1>Display Section 3</h1>:
+    count==4? <h1>Display Section 4</h1>:
+    count==5? <h1>Display Section 5</h1>:
+    count==6? <h1>Display Section 6</h1>:
+    <h1>Please Log in</h1>
+}
+    </div>
+  )
+}
+
+export default App
+
+//Multiple Conditional Rendering using if...else ifimport React, { useState } from 'react'
+
+function App() {
+  let [count, setCount] = useState(0)
+  function Counter(ct){
+      if(ct==0){
+        return <h2>Display Section 0</h2>
+      }
+      else if(ct==1){
+        return <h2>Display Section 1</h2>
+      }
+      else if(ct==2){
+        return <h2>display section 2</h2>
+      }
+      else{
+        return <h2>Please log in</h2>
+      }
+  }
+  return (
+    <div>
+      <h1>Count: {count}</h1>
+      <button onClick={()=>setCount(count+1)}>Counter</button>
+      {Counter(count)}  
+      </div>
+  )
+}
+
+export default App
+
+
+
