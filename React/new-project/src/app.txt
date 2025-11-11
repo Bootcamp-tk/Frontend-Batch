@@ -655,3 +655,79 @@ console.log(state)
 }
 
 export default App
+
+//Lazy Loading
+import React, { lazy, Suspense, useState } from 'react'
+import Visitor from './components/Visitor'
+// let Comp = lazy(()=>import('./components/Visitor'))
+
+function App() {
+  let[load, setLoad] = useState(false)
+  return (
+    <div>
+
+    {/* {
+      load? <Suspense fallback = {<h2>Loading....</h2>}> <Comp/> </Suspense>:null
+    } */}
+      {
+        load?<Visitor/>:null
+      }
+      <button onClick={()=>setLoad(true)}>Load Visitor</button>
+       {/* <Visitor/> */}
+    </div>
+  )
+}
+
+export default App
+
+//Legacy Redux
+import React from 'react'
+import Ctr from './Ctr'
+import { useDispatch, useSelector } from 'react-redux'
+import { bColor } from './ReduxStore/Action'
+
+function App() {
+  const bgColor = useSelector((state)=>state.color.backgroundColor)
+  const dispatch = useDispatch()
+  return (
+    <div style={{backgroundColor: bgColor, height: "100vh"}}>
+
+      <Ctr/>
+      <br /><br />
+      <button onClick={()=>dispatch(bColor("blue"))}>Blue</button>
+      <button onClick={()=>dispatch(bColor("violet"))}>Violet</button>
+      <button onClick={()=>dispatch(bColor("orange"))}>Orange</button>
+    </div>
+  )
+}
+
+export default App
+
+//ReduxToolkit
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import {increment, decrement} from './ReduxToolkit/CounterSlice'
+import { setAge, setUser } from './ReduxToolkit/userSlice'
+
+function App() {
+  let count = useSelector((state)=>state.counter.value)
+  const dispatch = useDispatch()
+  let user = useSelector((state)=>state.user)
+  return (
+    <div>
+      <h1>Count: {count}</h1>
+      <button onClick={()=>dispatch(increment())}>Increment</button>
+      <button onClick={()=>dispatch(decrement())}>Decrement</button>
+
+      <br /><br />
+      
+      <h1>Name: {user.name}</h1>
+      <h1>Age: {user.age}</h1>
+
+      <button onClick={()=>dispatch(setUser({name: "Birendra", age: 25}))}>Update User</button>
+      <button onClick={()=>dispatch(setAge({age: 30}))}>Udate Age</button>
+    </div>
+  )
+}
+
+export default App
